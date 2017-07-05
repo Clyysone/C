@@ -104,27 +104,17 @@
     </item>
     <item>
      <property name="text">
-      <string>U001</string>
+      <string>A001</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>U011</string>
+      <string>A002</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>U111</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>U002</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>U003</string>
+      <string>A003</string>
      </property>
     </item>
    </widget>

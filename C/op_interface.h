@@ -11,7 +11,7 @@ extern QString oper_file;
 extern QString stor_file;
 extern QString cata_file;
 extern QString reco_file;
-extern op_info   *cur_op_info;
+extern op_info   *cur_oper;
 extern Storage   *cur_stor;
 extern Catalogue  * cur_cata;
 extern Record   *cur_reco;
@@ -35,6 +35,7 @@ private slots:
     void cata_display();
     void record_display();
     void record_select();
+    void count_display();
     void on_op_info_change_clicked();
 
     void on_op_passwd_change_clicked();
@@ -59,6 +60,7 @@ private slots:
 
 private:
     Ui::op_interface *ui;
+    QMessageBox *box1;
 };
 
 #endif // OP_INTERFACE_H

@@ -27,7 +27,7 @@
      <string notr="true">font: 11pt &quot;微软雅黑&quot;;</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -419,6 +419,9 @@
         <width>141</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 11pt &quot;微软雅黑&quot;;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
