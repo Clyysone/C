@@ -24,8 +24,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        login.cpp
+        login.cpp \
+    op_interface.cpp \
+    su_oper.cpp
 
-HEADERS  += login.h
+HEADERS  += login.h \
+    c_kernel.h \
+    op_interface.h \
+    su_oper.h
 
-FORMS    += login.ui
+FORMS    += login.ui \
+    op_interface.ui \
+    su_oper.ui
