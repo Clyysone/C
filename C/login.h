@@ -8,7 +8,7 @@
 #include"c_kernel.h"
 extern op_info *head_oper;
 extern Storage *head_all;
-extern QString oper_fil;
+extern QString oper_file;
 extern QString stor_file;
 extern QString cata_file;
 extern QString reco_file;
