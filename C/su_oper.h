@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include<QMessageBox>
+#include <QStandardItemModel>
 #include "c_kernel.h"
 extern op_info *head_oper;
 extern Storage *head_all;
@@ -12,8 +13,6 @@ extern QString cata_file;
 extern QString reco_file;
 extern op_info   *cur_oper;
 extern Storage   *cur_stor;
-extern Catalogue  * cur_cata;
-extern Record   *cur_reco;
 
 namespace Ui {
 class su_oper;
@@ -25,10 +24,14 @@ class su_oper : public QMainWindow,public myclass
 
 public:
     explicit su_oper(QWidget *parent = 0);
+    void fresh_stor();
+    void fresh_oper();
+    void fresh_combox();
     ~su_oper();
 
 private slots:
     void on_tabWidget_tabBarClicked(int index);
+    void stor_display();
 
     void on_stor_add_clicked();
 
@@ -40,6 +43,7 @@ private slots:
 
 private:
     Ui::su_oper *ui;
+    QMessageBox *box2;
 };
 
 #endif // SU_OPER_H

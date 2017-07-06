@@ -14,8 +14,6 @@ extern QString cata_file;
 extern QString reco_file;
 extern op_info   *cur_oper;
 extern Storage   *cur_stor;
-extern Catalogue  * cur_cata;
-extern Record   *cur_reco;
 
 namespace Ui {
 class login;

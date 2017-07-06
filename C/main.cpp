@@ -2,17 +2,14 @@
 #include <QApplication>
 #include"c_kernel.h"
 
-op_info *head_oper;
-Storage *head_all;
-QString oper_file="D:\\Study-file\\C\\C\\op_info.txt";
+QString oper_file="D:\\Study-file\\C\\C\\op_info.txt"; //文件位置
 QString stor_file="D:\\Study-file\\C\\C\\storage.txt";
 QString cata_file="D:\\Study-file\\C\\C\\catalogue.txt";
 QString reco_file="D:\\Study-file\\C\\C\\record.txt";
-op_info   *cur_oper;
+op_info *head_oper; //整个程序运行期间保持不变
+Storage *head_all;
+op_info   *cur_oper; //一旦登录即不会变
 Storage   *cur_stor;
-Catalogue  * cur_cata;
-Record   *cur_reco;
-
 
 int main(int argc, char *argv[])
 {

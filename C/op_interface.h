@@ -13,8 +13,6 @@ extern QString cata_file;
 extern QString reco_file;
 extern op_info   *cur_oper;
 extern Storage   *cur_stor;
-extern Catalogue  * cur_cata;
-extern Record   *cur_reco;
 
 namespace Ui {
 class op_interface;
@@ -26,7 +24,8 @@ class op_interface : public QMainWindow,public myclass
 
 public:
     explicit op_interface(QWidget *parent = 0);
-    void refresh_combox_cata();
+    void refresh_baseinfo();
+    void refresh_combox();
     void refresh_table_cata();
     void refresh_table_count();
     ~op_interface();
@@ -53,8 +52,6 @@ private slots:
     void on_record_delete_clicked();
 
     void on_record_alter_clicked();
-
-    void on_select_clicked();
 
     void on_exit_clicked();
 
