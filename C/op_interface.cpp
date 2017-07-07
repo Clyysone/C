@@ -6,6 +6,21 @@ op_interface::op_interface(QWidget *parent) :
     ui(new Ui::op_interface)
 {
     ui->setupUi(this);
+    QString style="QPushButton{background-color:white;color: black;   border-radius: 5px;  border: 2px groove gray;  border-style: outset;}"
+                  "QPushButton:hover{background-color:black; color: white;}"
+                 "QPushButton:pressed{background-color:rgb(85, 170, 255);border-style: inset; }";
+    ui->exit->setStyleSheet("QPushButton{background-color:white;color: black;   border-radius: 5px;  border: 2px groove gray;  border-style: outset;}"
+                            "QPushButton:hover{background-color:red; color: white;}"
+                           "QPushButton:pressed{background-color:rgb(85, 170, 255);border-style: inset; }");
+    ui->op_info_change->setStyleSheet(style);
+    ui->op_passwd_change->setStyleSheet(style);
+    ui->stor_alter->setStyleSheet(style);
+    ui->goods_add->setStyleSheet(style);
+    ui->goods_alter->setStyleSheet(style);
+    ui->goods_delete->setStyleSheet(style);
+    ui->record_add->setStyleSheet(style);
+    ui->record_alter->setStyleSheet(style);
+    ui->record_delete->setStyleSheet(style);
     box1=new QMessageBox(this);
     //取出操作员对应的仓库信息
     Storage *p;

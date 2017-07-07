@@ -7,6 +7,13 @@ su_oper::su_oper(QWidget *parent) :
 {
     ui->setupUi(this);
     box2=new QMessageBox(this);
+    QString style="QPushButton{background-color:white;color: black;   border-radius: 5px;  border: 2px groove gray;  border-style: outset;}"
+                  "QPushButton:hover{background-color:black; color: white;}"
+                 "QPushButton:pressed{background-color:rgb(85, 170, 255);border-style: inset; }";
+    ui->op_add->setStyleSheet(style);
+    ui->op_dele->setStyleSheet(style);
+    ui->stor_add->setStyleSheet(style);
+    ui->stor_dele->setStyleSheet(style);
     fresh_stor();
     fresh_oper();
     fresh_combox();

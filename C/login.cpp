@@ -7,6 +7,14 @@ login::login(QWidget *parent) :
 {
     ui->setupUi(this);
     mybox=new QMessageBox(this);
+    ui->start->setStyleSheet("QPushButton{background-color:white;color: black;   border-radius: 5px;  border: 2px groove gray;  border-style: outset;}"
+                                         "QPushButton:hover{background-color:black; color: white;}"
+                                        "QPushButton:pressed{background-color:rgb(85, 170, 255);border-style: inset; }"   );
+    ui->exit->setStyleSheet("QPushButton{background-color:white;color: black;   border-radius: 5px;  border: 2px groove gray;  border-style: outset;}"
+                            "QPushButton:hover{background-color:black; color: white;}"
+                           "QPushButton:pressed{background-color:rgb(85, 170, 255);border-style: inset; }");
+    ui->code->setStyleSheet("border-radius:2px;border: 1px groove gray; ");
+    ui->passwd->setStyleSheet("border-radius:2px;border: 1px groove gray; ");
 }
 //退出按钮
 void login::on_exit_clicked()
@@ -36,9 +44,9 @@ void login::on_start_clicked()
         mybox->show();
         mybox->setText("请输入密码!");
     }
-    //超级管理员登录 默认   账户：111   ，密码：111
+    //超级管理员登录 默认   账户：123   ，密码：123
     else if(ui->su->isChecked()==1){
-         if(cur_code=="111"&&cur_pwd=="111"){
+         if(cur_code=="123"&&cur_pwd=="123"){
                  su=new su_oper(this);
                  su->show();
          }
