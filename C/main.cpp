@@ -2,10 +2,10 @@
 #include <QApplication>
 #include"c_kernel.h"
 
-QString oper_file="D:\\Study-file\\C\\C\\op_info.txt"; //文件位置
-QString stor_file="D:\\Study-file\\C\\C\\storage.txt";
-QString cata_file="D:\\Study-file\\C\\C\\catalogue.txt";
-QString reco_file="D:\\Study-file\\C\\C\\record.txt";
+QString oper_file="op_info.txt"; //文件位置
+QString stor_file="storage.txt";
+QString cata_file="catalogue.txt";
+QString reco_file="record.txt";
 op_info *head_oper; //整个程序运行期间保持不变
 Storage *head_all;
 op_info   *cur_oper; //一旦登录即不会变

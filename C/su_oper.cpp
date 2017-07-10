@@ -121,81 +121,109 @@ void su_oper::on_tabWidget_tabBarClicked(int index)
 }
 void su_oper::on_stor_add_clicked()
 {
-    Storage add_struc;
-    std::string str;
-    str=ui->stor_code->currentText().toStdString();
-    strcpy(add_struc.stor_code,str.c_str());
-    str=ui->stor_name->text().toStdString();
-    strcpy(add_struc.stor_name,str.c_str());
-    str=ui->locate->text().toStdString();
-    strcpy(add_struc.stor_loc,str.c_str());
-    str=ui->phone_num->text().toStdString();
-    strcpy(add_struc.stor_phon,str.c_str());
-    if(stor_add_node(add_struc)){
-         box2->show();
-         box2->setText("添加成功");
-     }
-     fresh_stor();
-     fresh_oper();
-     fresh_combox();
+    if(ui->stor_code->currentIndex()==0||ui->stor_name->text()==NULL
+            ||ui->locate->text()==NULL||ui->phone_num->text()==NULL){
+        box2->show();
+        box2->setText("请输入要添加的内容");
+    }
+    else{
+        Storage add_struc;
+        std::string str;
+        str=ui->stor_code->currentText().toStdString();
+        strcpy(add_struc.stor_code,str.c_str());
+        str=ui->stor_name->text().toStdString();
+        strcpy(add_struc.stor_name,str.c_str());
+        str=ui->locate->text().toStdString();
+        strcpy(add_struc.stor_loc,str.c_str());
+        str=ui->phone_num->text().toStdString();
+        strcpy(add_struc.stor_phon,str.c_str());
+        if(stor_add_node(add_struc)){
+             box2->show();
+             box2->setText("添加成功");
+         }
+        else{
+            box2->show();
+            box2->setText("添加失败!");
+        }
+         fresh_stor();
+         fresh_oper();
+         fresh_combox();
+    }
 }
 void su_oper::on_stor_dele_clicked()
 {
-    Storage dele_struc;
-    std::string str;
-    str=ui->stor_code->currentText().toStdString();
-    strcpy(dele_struc.stor_code,str.c_str());
-    str=ui->stor_name->text().toStdString();
-    strcpy(dele_struc.stor_name,str.c_str());
-    str=ui->locate->text().toStdString();
-    strcpy(dele_struc.stor_loc,str.c_str());
-    str=ui->phone_num->text().toStdString();
-    strcpy(dele_struc.stor_phon,str.c_str());
-    if(stor_dele_node(dele_struc)){
-         box2->show();
-         box2->setText("删除成功");
-     }
-     fresh_stor();
-     fresh_oper();
-     fresh_combox();
+    QMessageBox::StandardButton rb = QMessageBox::question(this, "确认框", "确定要删除该仓库?", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    if(rb == QMessageBox::Yes){
+        Storage dele_struc;
+        std::string str;
+        str=ui->stor_code->currentText().toStdString();
+        strcpy(dele_struc.stor_code,str.c_str());
+        str=ui->stor_name->text().toStdString();
+        strcpy(dele_struc.stor_name,str.c_str());
+        str=ui->locate->text().toStdString();
+        strcpy(dele_struc.stor_loc,str.c_str());
+        str=ui->phone_num->text().toStdString();
+        strcpy(dele_struc.stor_phon,str.c_str());
+        if(stor_dele_node(dele_struc)){
+             box2->show();
+             box2->setText("删除成功");
+         }
+         fresh_stor();
+         fresh_oper();
+         fresh_combox();
+    }
 }
 void su_oper::on_op_add_clicked()
 {
-    op_info add_struc;
-    std::string str;
-    str=ui->stor_code_2->currentText().toStdString();
-    strcpy(add_struc.stor_code,str.c_str());
-    str=ui->op_code->text().toStdString();
-    strcpy(add_struc.oper_code,str.c_str());
-    str= ui->op_name->text().toStdString();
-    strcpy(add_struc.oper_name,str.c_str());
-    str=ui->op_passwd->text().toStdString();
-    strcpy(add_struc.oper_pwd,str.c_str());
-    if(oper_add_node(add_struc)){
-         box2->show();
-         box2->setText("添加成功");
+    if(ui->stor_code_2->currentIndex()==0||ui->op_code->text()==NULL
+            ||ui->op_name->text()==NULL||ui->op_passwd->text()==NULL){
+        box2->show();
+        box2->setText("请输入要添加的内容");
     }
-    fresh_stor();
-    fresh_oper();
-    fresh_combox();
+    else{
+        op_info add_struc;
+        std::string str;
+        str=ui->stor_code_2->currentText().toStdString();
+        strcpy(add_struc.stor_code,str.c_str());
+        str=ui->op_code->text().toStdString();
+        strcpy(add_struc.oper_code,str.c_str());
+        str= ui->op_name->text().toStdString();
+        strcpy(add_struc.oper_name,str.c_str());
+        str=ui->op_passwd->text().toStdString();
+        strcpy(add_struc.oper_pwd,str.c_str());
+        if(oper_add_node(add_struc)){
+             box2->show();
+             box2->setText("添加成功");
+        }
+        else{
+            box2->show();
+            box2->setText("添加失败!");
+        }
+        fresh_stor();
+        fresh_oper();
+        fresh_combox();
+    }
 }
 void su_oper::on_op_dele_clicked()
 {
-    op_info dele_struc;
-    std::string str;
-    str=ui->stor_code_2->currentText().toStdString();
-    strcpy(dele_struc.stor_code,str.c_str());
-    str=ui->op_code->text().toStdString();
-    strcpy(dele_struc.oper_code,str.c_str());
-    str= ui->op_name->text().toStdString();
-    strcpy(dele_struc.oper_name,str.c_str());
-    str=ui->op_passwd->text().toStdString();
-    strcpy(dele_struc.oper_pwd,str.c_str());
-    if(oper_dele_node(dele_struc)){
-         box2->show();
-         box2->setText("删除成功");
+    QMessageBox::StandardButton rb = QMessageBox::question(this, "确认框", "确定要删除该操作员?", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    if(rb == QMessageBox::Yes){
+        op_info dele_struc;
+        std::string str;
+        str=ui->stor_code_2->currentText().toStdString();
+        strcpy(dele_struc.stor_code,str.c_str());
+        str=ui->op_code->text().toStdString();
+        strcpy(dele_struc.oper_code,str.c_str());
+        str= ui->op_name->text().toStdString();
+        strcpy(dele_struc.oper_name,str.c_str());
+        str=ui->op_passwd->text().toStdString();
+        strcpy(dele_struc.oper_pwd,str.c_str());
+        if(oper_dele_node(dele_struc)){
+             box2->show();
+             box2->setText("删除成功");
+        }
+        fresh_stor();
+        fresh_oper();
+        fresh_combox();
     }
-    fresh_stor();
-    fresh_oper();
-    fresh_combox();
 }

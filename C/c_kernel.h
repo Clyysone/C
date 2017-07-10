@@ -232,6 +232,8 @@ public:
         q=p=head_oper;
          //遍历找到最后一个节点的指针
         while(p){
+            if(strcmp(p->oper_code,add_struc.oper_code)==0)
+                return 0;
             q=p;
             p=p->next_oper;
         }
@@ -248,6 +250,7 @@ public:
     bool oper_dele_node(op_info dele_struc)
     {
         op_info *p,*q;
+        int flag=0;
         p=q=head_oper;
         //如果是第一个节点
         if(strcmp(p->oper_code,dele_struc.oper_code)==0){
@@ -258,26 +261,32 @@ public:
         //遍历找到要删除的节点
         while(p){
             if(strcmp(p->oper_code,dele_struc.oper_code)==0){
+                flag=1;
                 q->next_oper=p->next_oper;
                 break;
             }
             q=p;
             p=p->next_oper;
         }
+        if(flag==0) return 0;
         return 1;
     }
     //修改操作员节点*
     bool oper_alter_node(op_info alter_struc)
     {
         op_info *p;
+        int flag=0;
         p=head_oper;
         while(p){
             if(strcmp(p->oper_code,alter_struc.oper_code)==0){
+                flag=1;
                 strcpy(p->oper_name,alter_struc.oper_name);
                 strcpy(p->oper_pwd,alter_struc.oper_pwd);
+                break;
             }
             p=p->next_oper;
         }
+        if(flag==0) return 0;
         return 1;
     }
     //***************仓库链表相关******************
@@ -288,6 +297,8 @@ public:
         q=p=head_all;
          //遍历找到最后一个节点的指针
         while(p){
+            if(strcmp(p->stor_code,add_struc.stor_code)==0)
+                return 0;
             q=p;
             p=p->next_stor;
         }
@@ -304,6 +315,7 @@ public:
     bool stor_dele_node(Storage dele_struc)
     {
         Storage *p,*q;
+        int flag=0;
         q=p=head_all;
         if(strcmp(p->stor_code,dele_struc.stor_code)==0){
             head_all=p->next_stor;
@@ -312,21 +324,25 @@ public:
         p=p->next_stor;
         while(p){
             if(strcmp(p->stor_code,dele_struc.stor_code)==0){
+                flag=1;
                 q->next_stor=p->next_stor;
                 break;
             }
             q=p;
             p=p->next_stor;
         }
+        if(flag==0) return 0;
         return 1;
     }
     //修改仓库节点*
     bool stor_alter_node(Storage alter_struc)
     {
         Storage *p;
+        int flag=0;
         p=head_all;
         while(p){
             if(strcmp(p->stor_code,alter_struc.stor_code)==0){
+                flag=1;
                 strcpy(p->stor_code,alter_struc.stor_code);
                 strcpy(p->stor_name,alter_struc.stor_name);
                 strcpy(p->stor_loc,alter_struc.stor_loc);
@@ -335,6 +351,7 @@ public:
             }
             p=p->next_stor;
         }
+        if(flag==0) return 0;
         return 1;
     }
     //***************商品链表相关***********
@@ -345,6 +362,8 @@ public:
         q=p=cur_stor->head_cata;
         //遍历找到最后一个节点的指针
         while(p){
+            if(strcmp(p->cata_code,add_struc.cata_code)==0)
+                return 0;
             q=p;
             p=p->next_cata;
         }
@@ -363,6 +382,7 @@ public:
     bool cata_dele_node(Catalogue dele_struc)
     {
         Catalogue *p,*q;
+        int flag=0;
         p=q=cur_stor->head_cata;
         if(strcmp(p->cata_code,dele_struc.cata_code)==0){
             cur_stor->head_cata=p->next_cata;
@@ -371,21 +391,25 @@ public:
         p=p->next_cata;
         while(p){
             if(strcmp(p->cata_code,dele_struc.cata_code)==0){
+                flag=1;
                 q->next_cata=p->next_cata;
                 break;
             }
             q=p;
             p=p->next_cata;
         }
+        if(flag==0) return 0;
         return 1;
     }
     //修改商品节点*
     bool cata_alter_node(Catalogue alter_struc)
     {
         Catalogue *p;
+        int flag=0;
         p=cur_stor->head_cata;
         while(p){
             if(strcmp(p->cata_code,alter_struc.cata_code)==0){
+                flag=1;
                 strcpy(p->cata_name,alter_struc.cata_name);
                 strcpy(p->cata_type,alter_struc.cata_type);
                 strcpy(p->cata_unit,alter_struc.cata_unit);
@@ -393,6 +417,7 @@ public:
             }
             p=p->next_cata;
         }
+        if(flag==0)  return 0;
         return 1;
     }
     //*******************记录链表相关*****************
@@ -421,6 +446,8 @@ public:
                 else{
                     //遍历后获得最后一个节点的指针
                     while(p_reco){
+                        if(strcmp(p_reco->reco_code,add_struc.reco_code)==0)
+                            return 0;
                        q_reco=p_reco;
                        p_reco=p_reco->next_reco;
                     }
@@ -446,6 +473,7 @@ public:
     bool reco_dele_node(Record dele_struc)
     {
         Catalogue *p_cata;
+        int flag=0;
         p_cata=cur_stor->head_cata;
         while(p_cata){
             if(strcmp(p_cata->cata_code,dele_struc.cata_code)==0){
@@ -460,6 +488,7 @@ public:
                 while(p_reco){
                     //找到节点将前一个节点的下一个节点指针指向当前节点的下一个节点
                     if(strcmp(p_reco->reco_code,dele_struc.reco_code)==0){
+                        flag=1;
                         q_reco->next_reco=p_reco->next_reco;
                         break;
                     }
@@ -469,12 +498,14 @@ public:
             }
             p_cata=p_cata->next_cata;
         }
+        if(flag==0) return 0;
         return 1;
     }
     //修改记录节点*
     bool reco_alter_node(Record alter_struc)
     {
         Catalogue *p_cata;
+        int flag=0;
         p_cata=cur_stor->head_cata;
         while(p_cata){
             if(strcmp(p_cata->cata_code,alter_struc.cata_code)==0){
@@ -482,6 +513,7 @@ public:
                 p_reco=p_cata->head_reco;
                 while(p_reco){
                     if(strcmp(p_reco->reco_code,alter_struc.reco_code)==0){
+                        flag=1;
                         p_reco->reco_type=alter_struc.reco_type;
                         strcpy(p_reco->reco_date,alter_struc.reco_date);
                         p_reco->reco_sum=alter_struc.reco_sum;
@@ -492,6 +524,7 @@ public:
             }
             p_cata=p_cata->next_cata;
         }
+        if(flag==0) return 0;
         return 1;
     }
     //统计*

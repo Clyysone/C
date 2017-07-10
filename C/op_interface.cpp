@@ -362,6 +362,10 @@ void op_interface::on_goods_add_clicked()
         box1->show();
         box1->setText("添加成功!");
     }
+    else{
+        box1->show();
+        box1->setText("添加失败!");
+    }
     //刷新
     refresh_baseinfo();
     //refresh_combox();
@@ -370,29 +374,33 @@ void op_interface::on_goods_add_clicked()
 }
 void op_interface::on_goods_delete_clicked()
 {
-    Catalogue dele_struc;
-    std::string str;
-    //错误记录*****先将QString 转化为标准的stirng再将string转换为char*
-    strcpy(dele_struc.stor_code,cur_stor->stor_code);
-    str=ui->goods_code->currentText().toStdString();
-    strcpy(dele_struc.cata_code,str.c_str());
-    str=ui->goods_name->text().toStdString();
-    strcpy(dele_struc.cata_name,str.c_str());
-    str=ui->goods_type->text().toStdString();
-    strcpy(dele_struc.cata_type,str.c_str());
-    str=ui->num_units->text().toStdString();
-    strcpy(dele_struc.cata_unit,str.c_str());
-    str=ui->factory->text().toStdString();
-    strcpy(dele_struc.cata_comp,str.c_str());
-    if(cata_dele_node(dele_struc)){
-        box1->show();
-        box1->setText("删除成功!");
+    QMessageBox::StandardButton rb = QMessageBox::question(this, "确认框", "确定要删除该商品?", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    if(rb == QMessageBox::Yes)
+    {
+        Catalogue dele_struc;
+        std::string str;
+        //错误记录*****先将QString 转化为标准的stirng再将string转换为char*
+        strcpy(dele_struc.stor_code,cur_stor->stor_code);
+        str=ui->goods_code->currentText().toStdString();
+        strcpy(dele_struc.cata_code,str.c_str());
+        str=ui->goods_name->text().toStdString();
+        strcpy(dele_struc.cata_name,str.c_str());
+        str=ui->goods_type->text().toStdString();
+        strcpy(dele_struc.cata_type,str.c_str());
+        str=ui->num_units->text().toStdString();
+        strcpy(dele_struc.cata_unit,str.c_str());
+        str=ui->factory->text().toStdString();
+        strcpy(dele_struc.cata_comp,str.c_str());
+        if(cata_dele_node(dele_struc)){
+            box1->show();
+            box1->setText("删除成功!");
+        }
+        //刷新
+        refresh_baseinfo();
+        refresh_combox();
+        refresh_table_cata();
+        refresh_table_count();
     }
-    //刷新
-    refresh_baseinfo();
-    refresh_combox();
-    refresh_table_cata();
-    refresh_table_count();
 }
 void op_interface::on_goods_alter_clicked()
 {
@@ -444,6 +452,10 @@ void op_interface::on_record_add_clicked()
         box1->show();
         box1->setText("添加成功!");
     }
+    else{
+        box1->show();
+        box1->setText("添加失败!");
+    }
     //刷新
     ui->op_goods_code->setCurrentIndex(0);
     refresh_baseinfo();
@@ -453,32 +465,35 @@ void op_interface::on_record_add_clicked()
 }
 void op_interface::on_record_delete_clicked()
 {
-    Record dele_struc;
-    std::string str;
-    //错误记录*****先将QString 转化为标准的stirng再将string转换为char*
-    strcpy(dele_struc.oper_code,cur_stor->stor_code);
-    strcpy(dele_struc.stor_code,cur_stor->stor_code);
-    str=ui->op_goods_code->currentText().toStdString();
-    strcpy(dele_struc.cata_code,str.c_str());
-    str=ui->op_num->currentText().toStdString();
-    strcpy(dele_struc.reco_code,str.c_str());
-    if(ui->op_type->currentIndex()==1)
-        dele_struc.reco_type='1';
-    if(ui->op_type->currentIndex()==2)
-         dele_struc.reco_type='0';
-    dele_struc.reco_sum=ui->op_amount->text().toInt();
-    str=ui->date->text().toStdString();
-    strcpy(dele_struc.reco_date,str.c_str());
-    if(reco_dele_node(dele_struc)){
-        box1->show();
-        box1->setText("删除成功!");
+    QMessageBox::StandardButton rb = QMessageBox::question(this, "确认框", "确定要删除该记录?", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    if(rb == QMessageBox::Yes){
+        Record dele_struc;
+        std::string str;
+        //错误记录*****先将QString 转化为标准的stirng再将string转换为char*
+        strcpy(dele_struc.oper_code,cur_stor->stor_code);
+        strcpy(dele_struc.stor_code,cur_stor->stor_code);
+        str=ui->op_goods_code->currentText().toStdString();
+        strcpy(dele_struc.cata_code,str.c_str());
+        str=ui->op_num->currentText().toStdString();
+        strcpy(dele_struc.reco_code,str.c_str());
+        if(ui->op_type->currentIndex()==1)
+            dele_struc.reco_type='1';
+        if(ui->op_type->currentIndex()==2)
+             dele_struc.reco_type='0';
+        dele_struc.reco_sum=ui->op_amount->text().toInt();
+        str=ui->date->text().toStdString();
+        strcpy(dele_struc.reco_date,str.c_str());
+        if(reco_dele_node(dele_struc)){
+            box1->show();
+            box1->setText("删除成功!");
+        }
+        //刷新
+        ui->op_goods_code->setCurrentIndex(0);
+        refresh_baseinfo();
+        //refresh_combox();
+        refresh_table_cata();
+        refresh_table_count();
     }
-    //刷新
-    ui->op_goods_code->setCurrentIndex(0);
-    refresh_baseinfo();
-    //refresh_combox();
-    refresh_table_cata();
-    refresh_table_count();
 }
 void op_interface::on_record_alter_clicked()
 {
